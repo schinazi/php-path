@@ -2,6 +2,7 @@
   "name": "donut/path",
   "description": "utilities for handling and transforming file paths",
   "license": "BSD-3-Clause",
+  "version": "0.1.0",
   "authors": [
     {
       "name": "duchess",
