@@ -96,6 +96,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   public function test_normalize_double_dots_can_go_above_relative_path() {
     $cases = array(
       ".."          => "..",
+      "../../a/b"   => "../../a/b",
       "a/../.."     => "..",
       "a/../../.."  => "../..",
       "a/../../b/c" => "../b/c"
@@ -107,6 +108,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   public function test_normalize_insane_paths() {
     $cases = array(
       ".//a//b//..//c//.//d//e.ext"     => "a/c/d/e.ext",
+      "..///.///..///a///b///c.ext/"    => "../../a/b/c.ext/",
       "//a/..//.//..//b.ext//..//c.ext" => "/c.ext"
     );
 
