@@ -14,8 +14,15 @@ function join() {
 }
 
 function normalize($path) {
+  $is_absolute = is_absolute($path);
+
   $parts = array_filter(explode(DS, $path), function($part) {
     return strlen($part) !== 0 && $part !== ".";
   });
-  return implode(DS, $parts);
+
+  return sprintf(
+    "%s%s",
+    $is_absolute ? DS : "",
+    implode(DS, $parts)
+  );
 }
