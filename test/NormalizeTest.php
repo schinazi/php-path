@@ -11,4 +11,8 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertTrue($actual);
   }
 
+  public function test_normalize_removes_trailing_slash() {
+    $this->assertSame("hello/donut", p\normalize("/hello/donut/"));
+  }
+
 }

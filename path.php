@@ -13,4 +13,7 @@ function join() {
   return implode(DS, $parts);
 }
 
-function normalize() {}
+function normalize($path) {
+  $parts = array_filter(explode(DS, $path));
+  return implode(DS, $parts);
+}
