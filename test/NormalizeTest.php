@@ -18,7 +18,13 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   }
 
   public function test_normalize_preserves_leading_slash_in_absolute_path() {
-    $this->assertSame("/a/b/c", p\normalize("/a/b/c"));
+    $cases = array(
+      "/"       => "/",
+      "/a"      => "/a",
+      "/a/b/c"  => "/a/b/c"
+    );
+
+    $this->assertEachSame($cases);
   }
 
   public function test_normalize_removes_trailing_slash() {
