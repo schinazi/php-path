@@ -25,6 +25,15 @@ bool **is_absolute(** string `$path` **)**
 // true
 ```
 
+-----
+
+string **normalize(** string `$path` **)**
+
+```php
+<?php normalize("/a/b/../c/./d.ext");
+// /a/c/d.ext
+```
+
 Attribution
 ===========
 
