@@ -105,4 +105,13 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertEachSame($cases);
   }
 
+  public function test_normalize_insane_paths() {
+    $cases = array(
+      ".//a//b//..//c//.//d//e.ext"     => "a/c/d/e.ext",
+      "//a/..//.//..//b.ext//..//c.ext" => "/c.ext"
+    );
+
+    $this->assertEachSame($cases);
+  }
+
 }
