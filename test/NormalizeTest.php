@@ -15,7 +15,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertSame("hello/donut", p\normalize("/hello/donut/"));
   }
 
-  public function test_normalize_removes_repeated_separators() {
+  public function test_normalize_resolves_repeated_separators() {
     $this->assertSame("hello/donut/club", p\normalize("hello//donut///club"));
   }
 
