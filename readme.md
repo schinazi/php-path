@@ -14,6 +14,17 @@ Installation
 $ composer require donut/path
 ```
 
+Usage
+=====
+
+```php
+<?php require "vendor/autoload.php";
+
+use \Donut\Path as p;
+
+$path = p\join("/usr/local", "bin", "/donut");
+// /usr/local/bin/donut
+```
 
 API
 ===
@@ -32,6 +43,15 @@ string **normalize(** string `$path` **)**
 ```php
 <?php normalize("/a/b/../c/./d.ext");
 // /a/c/d.ext
+```
+
+-----
+
+**string join(** string `$part1` [, string `$...`] **)**
+
+```php
+<?php join("/usr", "local", "/bin", "./donut");
+// /usr/local/bin/donut
 ```
 
 Attribution
