@@ -20,11 +20,29 @@ function normalize($path) {
     return strlen($part) !== 0 && $part !== ".";
   });
 
-  $out = implode(DS, $parts);
+  $out = implode(DS, _normalize($parts));
 
   if (strlen($out) === 0 && !$is_absolute) {
     $out = ".";
   }
 
   return sprintf("%s%s", ($is_absolute ? DS : ""), $out);
+}
+
+function _normalize(Array $parts) {
+  for ($up = 0, $i = count($parts) - 1; $i >= 0; $i--) {
+    $part = $parts[$i];
+
+    if ($part === "..") {
+      array_splice($parts, $i, 1);
+      $up++;
+    }
+
+    elseif ($up > 0) {
+      array_splice($parts, $i, 1);
+      $up--;
+    }
+  }
+
+  return $parts;
 }

@@ -70,4 +70,16 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertEachSame($cases);
   }
 
+  public function test_normalize_resolves_double_dots() {
+    $cases = array(
+      "a/.."              => ".",
+      "a/b/.."            => "a",
+      "a/b/c/../.."       => "a",
+      "a/b/../c/../d/.."  => "a",
+      "a/b/../c"          => "a/c"
+    );
+
+    $this->assertEachSame($cases);
+  }
+
 }
