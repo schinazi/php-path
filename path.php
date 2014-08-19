@@ -14,46 +14,43 @@ function join() {
 }
 
 function normalize($path) {
-  $is_absolute = is_absolute($path);
-  $has_trailing_slash = substr($path, -1) === DS;
 
-  $parts = array_filter(explode(DS, $path), function($part) {
-    return strlen($part) !== 0 && $part !== ".";
-  });
+  $up     = 0;
+  $parts  = array();
 
-  $out = implode(DS, _normalize(array_slice($parts, 0), $is_absolute));
+  // normalize each path component
+  foreach (explode(DS, $path) as $p) {
 
-  if (strlen($out) === 0 && !$is_absolute) {
-    $out = ".";
-  }
+    // skip empty and "." components
+    if ($p === "" || $p === ".") continue;
 
-  if (strlen($out) > 0 && $has_trailing_slash) {
-    $out = $out . DS;
-  }
-
-  return sprintf("%s%s", ($is_absolute ? DS : ""), $out);
-}
-
-function _normalize(Array $parts, $is_absolute) {
-
-  for ($up=0, $i=count($parts)-1; $i>=0; $i--) {
-
-    if ($parts[$i] === "..") {
-      array_splice($parts, $i, 1);
-      $up++;
+    // go up a directory
+    elseif ($p === "..") {
+      if (is_null(array_pop($parts))) $up++;
+      continue;
     }
 
-    elseif ($up > 0) {
-      array_splice($parts, $i, 1);
-      $up--;
-    }
+    array_push($parts, $p);
   }
 
-  if (!$is_absolute) {
+  // reattach trailing slash, if present
+  if (substr($path, -1) === DS && count($parts) > 0) {
+    array_push($parts, "");
+  }
+
+  // exceptions for relative urls
+  if (!is_absolute($path)) {
+
+    // allow relative urls to go "up" beyond their starting point
     for (; $up > 0; $up--) {
       array_unshift($parts, "..");
     }
+
+    // if a relative path is empty, set to "."
+    if (count($parts) === 0) {
+      array_push($parts, ".");
+    }
   }
 
-  return $parts;
+  return sprintf("%s%s", (is_absolute($path) ? DS : ""), implode(DS, $parts));
 }
