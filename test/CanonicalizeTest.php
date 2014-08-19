@@ -43,4 +43,28 @@ class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
     }
   }
 
+  public function test_canonicalize_absolute_path_returns_original() {
+    $cases = array(
+      "/"     => "/",
+      "/a"    => "/a",
+      "/a/b"  => "/a/b"
+    );
+
+    foreach ($cases as $input => $expected) {
+      $this->assertSame($expected, p\canonicalize($input));
+    }
+  }
+
+  public function test_canonicalize_absolute_path_ignores_second_arg() {
+    $cases = array(
+      "/"     => "/",
+      "/a"    => "/a",
+      "/a/b"  => "/a/b"
+    );
+
+    foreach ($cases as $input => $expected) {
+      $this->assertSame($expected, p\canonicalize($input, "/donut"));
+    }
+  }
+
 }

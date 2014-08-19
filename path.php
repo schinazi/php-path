@@ -5,7 +5,15 @@ namespace Donut\Path;
 define("DS", \DIRECTORY_SEPARATOR);
 
 function canonicalize($path, $root=null) {
-  if (is_null($root)) $root = getcwd();
+
+  if (is_absolute($path)) {
+    return normalize($path);
+  }
+
+  if (is_null($root)) {
+    $root = getcwd();
+  }
+
   return normalize(join($root, $path));
 }
 
