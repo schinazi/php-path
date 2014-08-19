@@ -20,7 +20,7 @@ function normalize($path) {
     return strlen($part) !== 0 && $part !== ".";
   });
 
-  $out = implode(DS, _normalize($parts));
+  $out = implode(DS, _normalize(array_slice($parts, 0)));
 
   if (strlen($out) === 0 && !$is_absolute) {
     $out = ".";
