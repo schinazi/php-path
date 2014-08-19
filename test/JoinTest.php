@@ -26,4 +26,9 @@ class JoinTest extends \PHPUnit_Framework_TestCase {
     $this->assertSame("/a/b/c/d/e/f", $actual);
   }
 
+  public function test_join_returns_dot_for_empty_parts() {
+    $actual = p\join();
+    $this->assertSame(".", $actual);
+  }
+
 }
