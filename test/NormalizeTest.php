@@ -82,4 +82,16 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertEachSame($cases);
   }
 
+  public function test_normalize_double_dots_cannot_go_above_absolute_path() {
+    $cases = array(
+      "/a/.."         => "/",
+      "/a/../.."      => "/",
+      "/a/b/../.."    => "/",
+      "/a/b/../../.." => "/",
+      "/a/../../../b" => "/b"
+    );
+
+    $this->assertEachSame($cases);
+  }
+
 }

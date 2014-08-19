@@ -20,7 +20,7 @@ function normalize($path) {
     return strlen($part) !== 0 && $part !== ".";
   });
 
-  $out = implode(DS, _normalize(array_slice($parts, 0)));
+  $out = implode(DS, _normalize(array_slice($parts, 0), $is_absolute));
 
   if (strlen($out) === 0 && !$is_absolute) {
     $out = ".";
@@ -29,11 +29,11 @@ function normalize($path) {
   return sprintf("%s%s", ($is_absolute ? DS : ""), $out);
 }
 
-function _normalize(Array $parts) {
-  for ($up = 0, $i = count($parts) - 1; $i >= 0; $i--) {
-    $part = $parts[$i];
+function _normalize(Array $parts, $is_absolute) {
 
-    if ($part === "..") {
+  for ($up=0, $i=count($parts)-1; $i>=0; $i--) {
+
+    if ($parts[$i] === "..") {
       array_splice($parts, $i, 1);
       $up++;
     }
@@ -41,6 +41,12 @@ function _normalize(Array $parts) {
     elseif ($up > 0) {
       array_splice($parts, $i, 1);
       $up--;
+    }
+  }
+
+  if (!$is_absolute) {
+    for (; $up > 0; $up--) {
+      array_unshift($parts, "..");
     }
   }
 
