@@ -11,4 +11,14 @@ class IsAbsoluteTest extends \PHPUnit_Framework_TestCase {
     $this->assertTrue($actual);
   }
 
+  public function test_path_with_leading_slash_is_absolute() {
+    $actual = p\is_absolute("/hello/donut");
+    $this->assertTrue($actual);
+  }
+
+  public function test_path_without_leading_slash_is_not_absolute() {
+    $actual = p\is_absolute("hello/donut");
+    $this->assertFalse($actual);
+  }
+
 }
