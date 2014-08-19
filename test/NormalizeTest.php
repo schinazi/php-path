@@ -40,8 +40,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   public function test_normalize_resolves_repeated_separators() {
     $cases = array(
       "a//b"        => "a/b",
-      "a///b///c"   => "a/b/c",
-      "//a//b//c//" => "/a/b/c"
+      "a///b///c"   => "a/b/c"
     );
 
     $this->assertEachSame($cases);
