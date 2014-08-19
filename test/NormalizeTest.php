@@ -27,11 +27,11 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertEachSame($cases);
   }
 
-  public function test_normalize_removes_trailing_slash() {
+  public function test_normalize_preserves_trailing_slash() {
     $cases = array(
-      "a/"      => "a",
-      "a/b/"    => "a/b",
-      "a/b/c/"  => "a/b/c"
+      "a/"      => "a/",
+      "a/b/"    => "a/b/",
+      "a/b/c/"  => "a/b/c/"
     );
 
     $this->assertEachSame($cases);

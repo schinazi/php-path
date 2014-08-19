@@ -15,6 +15,7 @@ function join() {
 
 function normalize($path) {
   $is_absolute = is_absolute($path);
+  $has_trailing_slash = substr($path, -1) === DS;
 
   $parts = array_filter(explode(DS, $path), function($part) {
     return strlen($part) !== 0 && $part !== ".";
@@ -24,6 +25,10 @@ function normalize($path) {
 
   if (strlen($out) === 0 && !$is_absolute) {
     $out = ".";
+  }
+
+  if (strlen($out) > 0 && $has_trailing_slash) {
+    $out = $out . DS;
   }
 
   return sprintf("%s%s", ($is_absolute ? DS : ""), $out);
