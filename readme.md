@@ -29,6 +29,24 @@ $path = p\join("/usr/local", "bin", "/donut");
 API
 ===
 
+string **canonicalize(** string `$path` [, string `$root` ] **)**
+
+```php
+<?php
+
+chdir("/home/donut")
+canonicalize("a/b/c.ext");
+// => /home/donut/a/b/c.ext
+
+canonicalize("a/b/c.ext", "/root");
+// => /root/a/b/c.ext
+
+canonicalize("/home/donut/club.ext", "/root");
+// => /home/donut/clut.ext
+```
+
+-----
+
 bool **is_absolute(** string `$path` **)**
 
 ```php
