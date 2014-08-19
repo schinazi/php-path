@@ -20,9 +20,11 @@ function normalize($path) {
     return strlen($part) !== 0 && $part !== ".";
   });
 
-  return sprintf(
-    "%s%s",
-    $is_absolute ? DS : "",
-    implode(DS, $parts)
-  );
+  $out = implode(DS, $parts);
+
+  if (strlen($out) === 0 && !$is_absolute) {
+    $out = ".";
+  }
+
+  return sprintf("%s%s", ($is_absolute ? DS : ""), $out);
 }

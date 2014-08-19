@@ -35,7 +35,18 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
       "a/./b"     => "a/b",
       "a/b/."     => "a/b",
       "./a/./b/." => "a/b",
-      "./././."   => ""
+      "./././."   => "."
+    );
+
+    $this->assertEachSame($cases);
+  }
+
+  public function test_normalize_empty_path_should_return_single_dot() {
+    $cases = array(
+      ""      => ".",
+      "."     => ".",
+      "./."   => ".",
+      "././." => "."
     );
 
     $this->assertEachSame($cases);
