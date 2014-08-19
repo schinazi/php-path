@@ -14,6 +14,12 @@ Installation
 $ composer require donut/path
 ```
 
+
+API
+===
+
+**bool is_absolute(** string `$path` **)**
+
 Attribution
 ===========
 
