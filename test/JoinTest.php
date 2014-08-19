@@ -21,4 +21,9 @@ class JoinTest extends \PHPUnit_Framework_TestCase {
     $this->assertSame("a/b/c/d", $actual);
   }
 
+  public function test_join_mixed_parts() {
+    $actual = p\join("/a/b", "c/d", "../", "./d/e/f", "g/..");
+    $this->assertSame("/a/b/c/d/e/f", $actual);
+  }
+
 }

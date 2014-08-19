@@ -10,7 +10,7 @@ function is_absolute($path) {
 
 function join() {
   $parts = func_get_args();
-  return implode(DS, $parts);
+  return normalize(implode(DS, $parts));
 }
 
 function normalize($path) {
