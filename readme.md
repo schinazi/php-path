@@ -18,7 +18,12 @@ $ composer require donut/path
 API
 ===
 
-**bool is_absolute(** string `$path` **)**
+bool **is_absolute(** string `$path` **)**
+
+```php
+<?php is_absolute("/home/donut");
+// true
+```
 
 Attribution
 ===========
