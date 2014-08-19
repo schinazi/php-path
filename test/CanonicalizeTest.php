@@ -12,9 +12,9 @@ use Donut\Path as p;
 
 class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
 
-  private function assertEachSame(Array $cases) {
+  private function assertEachSame(Array $cases, \Closure $fn) {
     foreach ($cases as $input => $expected) {
-      $this->assertSame($expected, p\canonicalize($input));
+      $this->assertSame($expected, $fn($input));
     }
   }
 
@@ -31,7 +31,9 @@ class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
       "a/b/c/.."  => "/fake/a/b"
     );
 
-    $this->assertEachSame($cases);
+    $this->assertEachSame($cases, function($input) {
+      return p\canonicalize($input);
+    });
   }
 
 }
