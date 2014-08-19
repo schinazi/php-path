@@ -6,6 +6,12 @@ use Donut\Path as p;
 
 class NormalizeTest extends \PHPUnit_Framework_TestCase {
 
+  private function assertEachSame(Array $cases) {
+    foreach($cases as $path => $expected) {
+      $this->assertSame($expected, p\normalize($path));
+    }
+  }
+
   public function test_normalize_is_defined() {
     $actual = function_exists('\Donut\Path\normalize');
     $this->assertTrue($actual);
@@ -32,9 +38,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
       "./././."   => ""
     );
 
-    foreach($cases as $path => $expected) {
-      $this->assertSame($expected, p\normalize($path));
-    }
+    $this->assertEachSame($cases);
   }
 
 }
