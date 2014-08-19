@@ -19,4 +19,18 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
     $this->assertSame("hello/donut/club", p\normalize("hello//donut///club"));
   }
 
+  public function test_normalize_resolves_single_dots() {
+    $cases = array(
+      "./a/b"     => "a/b",
+      "a/./b"     => "a/b",
+      "a/b/."     => "a/b",
+      "./a/./b/." => "a/b",
+      "./././."   => ""
+    );
+
+    foreach($cases as $path => $expected) {
+      $this->assertSame($expected, p\normalize($path));
+    }
+  }
+
 }

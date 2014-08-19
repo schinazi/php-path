@@ -14,6 +14,8 @@ function join() {
 }
 
 function normalize($path) {
-  $parts = array_filter(explode(DS, $path));
+  $parts = array_filter(explode(DS, $path), function($part) {
+    return strlen($part) !== 0 && $part !== ".";
+  });
   return implode(DS, $parts);
 }
