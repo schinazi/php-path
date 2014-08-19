@@ -38,7 +38,13 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   }
 
   public function test_normalize_resolves_repeated_separators() {
-    $this->assertSame("hello/donut/club", p\normalize("hello//donut///club"));
+    $cases = array(
+      "a//b"        => "a/b",
+      "a///b///c"   => "a/b/c",
+      "//a//b//c//" => "/a/b/c"
+    );
+
+    $this->assertEachSame($cases);
   }
 
   public function test_normalize_resolves_single_dots() {
