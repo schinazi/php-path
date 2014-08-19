@@ -36,4 +36,17 @@ class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
     });
   }
 
+  public function test_canonicalize_accepts_second_argument_as_pwd() {
+    $cases = array(
+      "."         => "/donut",
+      "a"         => "/donut/a",
+      "a/b"       => "/donut/a/b",
+      "a/b/c/.."  => "/donut/a/b"
+    );
+
+    $this->assertEachSame($cases, function($input) {
+      return p\canonicalize($input, "/donut");
+    });
+  }
+
 }
