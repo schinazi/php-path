@@ -33,7 +33,7 @@ bool **is_absolute(** string `$path` **)**
 
 ```php
 <?php is_absolute("/home/donut");
-// true
+// => true
 ```
 
 -----
@@ -42,7 +42,7 @@ string **normalize(** string `$path` **)**
 
 ```php
 <?php normalize("/a/b/../c/./d.ext");
-// /a/c/d.ext
+// => /a/c/d.ext
 ```
 
 -----
@@ -51,7 +51,7 @@ string **join(** string `$part1` [, string `$...`] **)**
 
 ```php
 <?php join("/usr", "local", "/bin", "./donut");
-// /usr/local/bin/donut
+// => /usr/local/bin/donut
 ```
 
 Attribution
