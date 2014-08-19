@@ -12,12 +12,6 @@ use Donut\Path as p;
 
 class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
 
-  private function assertEachSame(Array $cases, \Closure $fn) {
-    foreach ($cases as $input => $expected) {
-      $this->assertSame($expected, $fn($input));
-    }
-  }
-
   public function test_canonicalize_is_defined() {
     $actual = function_exists('\Donut\Path\canonicalize');
     $this->assertTrue($actual);
@@ -31,9 +25,9 @@ class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
       "a/b/c/.."  => "/fake/a/b"
     );
 
-    $this->assertEachSame($cases, function($input) {
-      return p\canonicalize($input);
-    });
+    foreach ($cases as $input => $expected) {
+      $this->assertSame($expected, p\canonicalize($input));
+    }
   }
 
   public function test_canonicalize_accepts_second_argument_as_pwd() {
@@ -44,9 +38,9 @@ class CanonicalizeTest extends \PHPUnit_Framework_TestCase {
       "a/b/c/.."  => "/donut/a/b"
     );
 
-    $this->assertEachSame($cases, function($input) {
-      return p\canonicalize($input, "/donut");
-    });
+    foreach ($cases as $input => $expected) {
+      $this->assertSame($expected, p\canonicalize($input, "/donut"));
+    }
   }
 
 }
