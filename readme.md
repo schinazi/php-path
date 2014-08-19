@@ -47,7 +47,7 @@ string **normalize(** string `$path` **)**
 
 -----
 
-**string join(** string `$part1` [, string `$...`] **)**
+string **join(** string `$part1` [, string `$...`] **)**
 
 ```php
 <?php join("/usr", "local", "/bin", "./donut");
