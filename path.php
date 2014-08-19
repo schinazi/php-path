@@ -4,6 +4,8 @@ namespace Donut\Path;
 
 define("DS", \DIRECTORY_SEPARATOR);
 
+function canonicalize() {}
+
 function is_absolute($path) {
   return substr($path, 0, 1) === DS;
 }
