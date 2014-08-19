@@ -29,12 +29,13 @@ $path = p\join("/usr/local", "bin", "/donut");
 API
 ===
 
-string **canonicalize(** string `$path` [, string `$root` ] **)**
+string **canonicalize(** string `$path` [, string `$root` = getcwd() ] **)**
 
 ```php
 <?php
 
-chdir("/home/donut")
+chdir("/home/donut");
+
 canonicalize("a/b/c.ext");
 // => /home/donut/a/b/c.ext
 
@@ -42,7 +43,7 @@ canonicalize("a/b/c.ext", "/root");
 // => /root/a/b/c.ext
 
 canonicalize("/home/donut/club.ext", "/root");
-// => /home/donut/clut.ext
+// => /home/donut/club.ext
 ```
 
 -----
