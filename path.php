@@ -2,7 +2,7 @@
 
 namespace Donut\Path;
 
-function join($a, $b) {
-  $parts = array($a, $b);
+function join() {
+  $parts = func_get_args();
   return implode("/", $parts);
 }
