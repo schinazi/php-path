@@ -12,7 +12,7 @@ class NormalizeTest extends \PHPUnit_Framework_TestCase {
   }
 
   public function test_normalize_removes_trailing_slash() {
-    $this->assertSame("hello/donut", p\normalize("/hello/donut/"));
+    $this->assertSame("hello/donut", p\normalize("hello/donut/"));
   }
 
   public function test_normalize_resolves_repeated_separators() {
