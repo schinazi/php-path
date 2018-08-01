@@ -2,7 +2,9 @@
 
 namespace Donut\Path;
 
-define("DS", \DIRECTORY_SEPARATOR);
+if (!defined('DS')) {
+  define("DS", \DIRECTORY_SEPARATOR);
+}
 
 function canonicalize($path, $root=null) {
 
